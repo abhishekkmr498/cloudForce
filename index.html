@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    .buttonSuccess {
+        padding: 10px 10px;
+        font-size: 10px;
+        text-align: center;
+        cursor: pointer;
+        outline: none;
+        color: #fff;
+        background-color: #3683ff;
+        border: none;
+        border-radius: 5px;
+        box-shadow: 3px 4px #999;
+        ;
+    }
+
+    .buttonSuccess:hover {
+        background-color: #1b3969
+    }
+
+    .buttonSuccess:active {
+        background-color: #3683ff;
+        box-shadow: 0 5px #666;
+        transform: translateY(4px);
+    }
+
+    .buttonError {
+        padding: 10px 10px;
+        font-size: 10px;
+        text-align: center;
+        cursor: pointer;
+        outline: none;
+        color: #220d0d;
+        background-color: #e33f55;
+        border: none;
+        border-radius: 5px;
+        box-shadow: 3px 4px #999;
+        ;
+    }
+
+    .buttonError:hover {
+        background-color: #7a3e8e
+    }
+
+    .buttonError:active {
+        background-color: #7a3e8e;
+        box-shadow: 0 5px #666;
+        transform: translateY(4px);
+    }
+</style>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        console.log('local servers loaded');
+        window.onmessage = function (e) {
+            const data = JSON.parse(e.data);
+
+            console.log('event received', data);
+            console.log('event received', data.sfdcEvent);
+            if (data.sfdcEvent === "addPartnerLead") {
+                document.getElementById("windowMsg").innerHTML = JSON.stringify(data.createPayload);
+            }
+        };
+
+        fireEvent = function () {
+            //const iframe = document.getElementsByTagName('iframe')[0];
+            //iframe.contentWindow.postMessage('hello', '*');
+            const sfData = {
+                sfdcEvent: 'createnew'
+            };
+
+            window.top.postMessage(JSON.stringify(sfData), '*');
+            //<!-- const iframeEvent = new Event("iframeEvent");
+            //document.dispatchEvent(iframeEvent); -->
+            console.log('----1');
+        };
+        fireEventNewAcc = function () {
+            //const iframe = document.getElementsByTagName('iframe')[0];
+            //iframe.contentWindow.postMessage('hello', '*');
+            const sfData = {
+                sfdcEvent: 'createnewAcc'
+            };
+
+            window.top.postMessage(JSON.stringify(sfData), '*');
+            //<!-- const iframeEvent = new Event("iframeEvent");
+            //document.dispatchEvent(iframeEvent); -->
+            console.log('----1');
+        };
+        fireEventSubTab = function () {
+            //const iframe = document.getElementsByTagName('iframe')[0];
+            //iframe.contentWindow.postMessage('hello', '*');
+            const sfData = {
+                sfdcEvent: 'opensubtab'
+            };
+
+            window.top.postMessage(JSON.stringify(sfData), '*');
+            //<!-- const iframeEvent = new Event("iframeEvent");
+            //document.dispatchEvent(iframeEvent); -->
+            console.log('----2');
+        };
+
+        fireEventPopup = function () {
+            //const iframe = document.getElementsByTagName('iframe')[0];
+            //iframe.contentWindow.postMessage('hello', '*');
+            const sfData = {
+                sfdcEvent: 'openpopup'
+            };
+
+            window.top.postMessage(JSON.stringify(sfData), '*');
+            //<!-- const iframeEvent = new Event("iframeEvent");
+            //document.dispatchEvent(iframeEvent); -->
+            console.log('----3');
+        }
+
+        reset = function () {
+            document.getElementById("windowMsg").innerHTML = "Place where you see the msg ---> Default Static message";
+        }
+
+
+        //<!-- const myButton = document.getElementById("firEventButton");
+        //myButton.addEventListener("click", function() {
+        //fireEvent();
+        //    console.log('----');
+        //}); -->
+    </script>
+</head>
+
+<body style="border: 1px;">
+    <img src="https://workspan-staging-2.qa.workspan.app/assets/src/assets/images/ws-logo-full.bbac7f4e2cc45ba829411cf384c47806.svg" alt="" style="width: 50vh;">
+    <p style="font-size: large;
+    font-style: oblique;
+    font-stretch: ultra-expanded;">This is a Local hosted page.</p>
+    <!--<div id="windowMsg" style="color: blue;">Place where you see the msg-> Default Static message</div> -->
+    <br>
+    <hr>
+    <button onclick="fireEvent()" id="firEventButton" class="buttonSuccess">Create Referral</button>
+    <button onclick="fireEventNewAcc()" id="firEventButton4" class="buttonSuccess">Create New Account</button>
+    <button onclick="fireEventSubTab()" id="firEventButton2" class="buttonSuccess">Open WorSpan Admin Tab</button>
+    <button onclick="fireEventPopup()" id="firEventButton3" class="buttonSuccess">Open Chat Modal</button>
+    <!-- <button onclick="reset()" id="firEventButton" class="buttonError">Reset</button> -->
+</body>
+
+</html>
