@@ -79,40 +79,28 @@
             console.log('----1');
         };
         fireEventNewAcc = function () {
-            //const iframe = document.getElementsByTagName('iframe')[0];
-            //iframe.contentWindow.postMessage('hello', '*');
             const sfData = {
                 sfdcEvent: 'createnewAcc'
             };
 
             window.top.postMessage(JSON.stringify(sfData), '*');
-            //<!-- const iframeEvent = new Event("iframeEvent");
-            //document.dispatchEvent(iframeEvent); -->
             console.log('----1');
         };
         fireEventSubTab = function () {
-            //const iframe = document.getElementsByTagName('iframe')[0];
-            //iframe.contentWindow.postMessage('hello', '*');
             const sfData = {
                 sfdcEvent: 'opensubtab'
             };
 
             window.top.postMessage(JSON.stringify(sfData), '*');
-            //<!-- const iframeEvent = new Event("iframeEvent");
-            //document.dispatchEvent(iframeEvent); -->
             console.log('----2');
         };
 
         fireEventPopup = function () {
-            //const iframe = document.getElementsByTagName('iframe')[0];
-            //iframe.contentWindow.postMessage('hello', '*');
             const sfData = {
                 sfdcEvent: 'openpopup'
             };
 
             window.top.postMessage(JSON.stringify(sfData), '*');
-            //<!-- const iframeEvent = new Event("iframeEvent");
-            //document.dispatchEvent(iframeEvent); -->
             console.log('----3');
         }
 
@@ -120,17 +108,12 @@
             document.getElementById("windowMsg").innerHTML = "Place where you see the msg ---> Default Static message";
         }
 
-
-        //<!-- const myButton = document.getElementById("firEventButton");
-        //myButton.addEventListener("click", function() {
-        //fireEvent();
-        //    console.log('----');
-        //}); -->
     </script>
 </head>
 
 <body style="border: 1px;">
-    <img src="https://workspan-staging-2.qa.workspan.app/assets/src/assets/images/ws-logo-full.bbac7f4e2cc45ba829411cf384c47806.svg" alt="" style="width: 50vh;">
+<!--     <img src="https://workspan-staging-2.qa.workspan.app/assets/src/assets/images/ws-logo-full.bbac7f4e2cc45ba829411cf384c47806.svg" alt="" style="width: 50vh;">
+     -->
     <p style="font-size: large;
     font-style: oblique;
     font-stretch: ultra-expanded;">This is a Local hosted page.</p>
@@ -139,8 +122,8 @@
     <hr>
     <button onclick="fireEvent()" id="firEventButton" class="buttonSuccess">Create Referral</button>
     <button onclick="fireEventNewAcc()" id="firEventButton4" class="buttonSuccess">Create New Account</button>
-    <button onclick="fireEventSubTab()" id="firEventButton2" class="buttonSuccess">Open WorSpan Admin Tab</button>
-    <button onclick="fireEventPopup()" id="firEventButton3" class="buttonSuccess">Open Chat Modal</button>
+    <button onclick="fireEventSubTab()" id="firEventButton2" class="buttonSuccess">Open Admin Tab</button>
+    <button onclick="fireEventPopup()" id="firEventButton3" class="buttonSuccess">Open Popup</button>
     <!-- <button onclick="reset()" id="firEventButton" class="buttonError">Reset</button> -->
 </body>
 
